@@ -1,0 +1,12 @@
+--- # Tags playbook
+- hosts: tek
+  tasks:
+   - name: enter your name
+     raw: echo "ayesha" > /home/ayesha/shaesta.log
+     tags:
+      - firstname
+   - name: designation
+     raw: echo "devops_engineer" >> /home/ayesha/shaesta.log
+     tags:
+       - role
+

@@ -1,0 +1,5 @@
+---
+- hosts: tek
+  become: true
+  roles:
+   - role1

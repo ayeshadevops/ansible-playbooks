@@ -1,0 +1,3 @@
+- name: package
+  action: yum pkg=vsftpd state=present
+  notify: start the service 

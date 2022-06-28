@@ -1,0 +1,2 @@
+- name: start the service
+  action: service name=vsftpd state=started

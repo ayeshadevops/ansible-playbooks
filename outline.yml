@@ -1,0 +1,27 @@
+--- # outlining to my playbook
+- hosts: tek
+  become: true
+  vars_prompt:
+   - name: ab
+     prompt: please enter package name
+  tasks:
+   - name: Display Date&Time For Begining of Playbook
+     raw: /usr/bin/date  > /home/ayesha/begin_playbook_timestamp
+
+   - name: Uninstall {{ ab }} 
+     action: yum pkg={{ ab }} state=absent
+
+   - name: install {{ ab }}
+     action: yum pkg={{ ab }} state=present
+     notify: restart the {{ ab }}
+     async: 450
+     poll: 13
+   - name: moving logs
+     raw: yum list installed > /home/ayesha/packages_installed
+
+   - name: Display Date&Time For Ending of Playbook
+     raw: /usr/bin/date  > /home/ayesha/end_playbook_timestamp
+
+  handlers:
+   - name: restart the {{ ab }}
+     action: service name={{ ab }} state=started

@@ -1,0 +1,16 @@
+#This is my first playbook
+---
+- hosts: tek
+  become: true
+  vars_prompt:
+   - name: tek
+     prompt: please enter package name
+  tasks: 
+   - name: enter my name
+     raw: echo "ayeshay" > /opt/newfile
+   - name: package {{ tek }} installation in ansible
+     action: yum pkg={{ tek }} state=present
+     notify: service start
+  handlers:
+   - name: service start
+     action: service name={{ tek }} state=started

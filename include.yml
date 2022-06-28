@@ -1,0 +1,12 @@
+---
+- hosts: tek
+  become: true
+  tasks: 
+   - include_tasks: attach.yml
+   - name: reinstalling package
+     action: yum pkg=httpd state=present
+
+   - include_tasks: attach1.yml
+
+   - name: adding data to file
+     raw: echo "this is ayesha " >> bell
